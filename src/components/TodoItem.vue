@@ -2,8 +2,9 @@
   <div>
     <div class="card">
       <h3>{{ todo.task }}</h3>
-      <p v-if="todo.completed">This is completed</p>
-      <p v-if="!todo.completed">This is not completed</p>
+      <p v-if="todo.completed">completed</p>
+      <input type="checkbox" v-on:change="markCompleted"
+      :checked="todo.completed">
     </div>
   </div>
 </template>
@@ -11,7 +12,12 @@
 <script>
 export default {
   name: "TodoItem",
-  props: ["todo"]
+  props: ["todo"],
+  methods: {
+    markCompleted() {
+        this.todo.completed = !this.todo.completed; 
+    }
+  }
 };
 </script>
 
