@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="background-color: #eeeeee">
     <Todos v-bind:todos="todos"></Todos>
   </div>
 </template>
