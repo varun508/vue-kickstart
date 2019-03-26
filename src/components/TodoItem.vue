@@ -2,9 +2,11 @@
   <div>
     <div class="card">
       <h3>{{ todo.task }}</h3>
-      <p v-if="todo.completed">completed</p>
-      <input type="checkbox" v-on:change="markCompleted"
-      :checked="todo.completed">
+      <input type="checkbox" v-on:change="markCompleted" :checked="todo.completed">
+      <br>
+      <hr>
+      <br>
+      <button @click="$emit('del-todo',todo.id)">Delete</button>
     </div>
   </div>
 </template>
@@ -15,7 +17,7 @@ export default {
   props: ["todo"],
   methods: {
     markCompleted() {
-        this.todo.completed = !this.todo.completed; 
+      this.todo.completed = !this.todo.completed;
     }
   }
 };

@@ -1,35 +1,34 @@
 <template>
   <div id="app" style="background-color: #eeeeee">
-    <Todos v-bind:todos="todos"></Todos>
+    <Header/>
+    <AddTodo v-on:add-todo="addTodo"/>
+    <Todos v-bind:todos="todos" v-on:del-todo="delTodo"></Todos>
   </div>
 </template>
 
 <script>
-import Todos from "./components/Todos";
+import Todos from "./components/Todos.vue";
+import Header from "./components/layouts/Header.vue";
+import AddTodo from "./components/AddTodo.vue";
+
 export default {
   name: "app",
   components: {
-    Todos
+    Todos,
+    Header,
+    AddTodo
+  },
+  methods: {
+    delTodo(id) {
+      this.todos = this.todos.filter(todo => todo.id !== id);
+    },
+    addTodo(newTodo){
+      this.todos = [...this.todos,newTodo];
+    }
   },
   data() {
     return {
-      todos: [
-        {
-          id: 1,
-          task: "Task number 1",
-          completed: false
-        },
-        {
-          id: 2,
-          task: "Task number 2",
-          completed: true
-        },
-        {
-          id: 3,
-          task: "Task number 3",
-          completed: false
-        },
-      ]
+      todos: []
     };
   }
 };
